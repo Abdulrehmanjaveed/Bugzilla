@@ -1,0 +1,49 @@
+require: rubocop-performance
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Style/Documentation:
+  Enabled: false
+
+Metrics/MethodLength:
+  Max: 25
+
+Metrics/LineLength:
+  Max: 160
+
+Metrics/AbcSize:
+  Max: 30
+
+Metrics/PerceivedComplexity:
+  Max: 10
+
+Style/SymbolArray:
+  Enabled: false
+
+Style/StderrPuts:
+  Enabled: false
+
+Style/MixinUsage:
+  Enabled: false
+
+Style/ExpandPathArguments:
+  Enabled: false
+
+Style/RedundantBegin:
+  Enabled: false
+
+Layout/LeadingCommentSpace:
+  Enabled: false
+
+Metrics/BlockLength:
+  Enabled: false
+
+Style/BlockComments:
+  Enabled: false
+
+Style/NumericLiterals:
+  Enabled: false
+
+Style/ClassAndModuleChildren:
+  Enabled: false

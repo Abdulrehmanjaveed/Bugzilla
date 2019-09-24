@@ -1,0 +1,12 @@
+ <h2 ><%= current_user.user_type.capitalize  %></h2>
+<h3>Create your Project here <h3>
+<%= form_for @project do |f| %>
+	<%= f.label :Name %><br>
+	<%= f.text_field :name %><br>
+
+	<%= f.submit %>
+
+
+
+
+<% end %>

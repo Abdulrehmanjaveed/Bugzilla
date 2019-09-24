@@ -1,0 +1,31 @@
+
+ <h2 ><%= current_user.user_type.capitalize  %></h2>
+
+<h2> <%= @bug.project.name.capitalize %> </h2>
+<%if @bug.developerid%>
+<% @user = User.find(@bug.developerid )%>
+<%end%>
+ <table style="width:100%" border="1">
+ 	<tr>
+    <th align = "center">Title </th>
+    <th align = "center">Deadline</th> 
+    <th align = "center">Bugtype </th>
+    <th align = "center">Status</th> 
+    <th align = "center">Assign To</th> 
+  	</tr>
+  	<tr>
+<td><%= @bug.title %> </td>
+<td> <%= @bug.deadlane %> </td>
+<td> <%= @bug.bugtype %> </td>
+<td> <%= @bug.status %> </td>
+<%if @bug.developerid%>
+<td> <%= @user.name %> </td>
+<%end%>
+</tr>
+</table>
+<%= image_tag @bug.image_url(:thumb).to_s %>
+	<% if current_user.try(:developer?)%>
+<%= form_for @bug, url: assign_bug_project_bug_path(@bug.project, @bug) do |f| %>
+	<%= f.submit "Assign"%>
+<% end %>	
+<% end %>

@@ -1,0 +1,73 @@
+ <h2 ><%= current_user.user_type.capitalize  %></h2>
+	<h1> <%= "Details of "%><%=  @project.name  %> <h1>
+		<% if current_user.try(:manager?)%>
+		 	<h3><%= link_to "Edit Project ",  edit_project_path(@project) %></h3>
+ 			<h3><%= link_to "Delete Project",  project_path(@project), method: :delete, data:{confirm:"Are You Sure?"}  %></h3>
+ 		<%end%>
+	<br>
+	<h3 align = "center"><%= "Developers "%></h4>
+	<table style="width:100%" border="1">
+	<tr>
+	<th align = "center"><%= "Developers" %></th>
+	<% if current_user.try(:manager?)%>
+	<th align = "center"><%= "Remove Developer" %></th>
+	<% end %>
+	</tr>
+	
+	<% @project.project_users.each do |u| %>
+		<% if u.user.user_type == 'developer'%>
+	<tr>
+	<td align = "center"><%=  u.user.name%></td>
+	<% if current_user.try(:manager?)%>
+	<td align = "center"><%= link_to "Remove from Project ",  project_user_path(u.id), method: :delete, data:{confirm:"Are You Sure?"} %></td>
+	<% end %>
+	<% end %>
+	<% end %>
+</tr>
+	<% if current_user.try(:manager?)%>
+	<tr><td align = "center" colspan="2"><%= link_to "Add Developer ", new_project_user_path(@project) %></td></tr>
+	<%end%>
+</table>
+ <h3 align = "center"><%= "QA "%></h4>
+	<table style="width:100%" border="1">
+	<tr>
+	<th align = "center"><%= "QA" %></th>
+	<% if current_user.try(:manager?)%>
+	<th align = "center"><%= "Remove QA" %></th>
+	</tr>
+	<%end%>
+	
+	<% @project.project_users.each do |u| %>
+		<% if u.user.user_type == 'qa'%>
+	<tr>
+	<td align = "center"><%=  u.user.name%></td>
+	 <% if current_user.try(:manager?)%>
+	<td align = "center"><%= link_to "Remove from Project ",  project_user_path(u.id), method: :delete, data:{confirm:"Are You Sure?"} %></td>
+	<% end %>
+	<% end %>
+	<% end %>
+</tr>
+ <% if current_user.try(:manager?)%>
+	<tr><td align = "center" colspan="2"><%= link_to "Add QA ", new_project_user_path(@project) %></td></tr>
+		<% end %>
+</table>
+<br><br>
+ <h3 align = "center"><%= "Bugs "%></h4>
+<table style="width:100%" border="1">
+	<tr>
+	<th align = "center"><%= "Bugs" %></th>
+	<th align = "center"> <%= "Details" %></th>
+	<th align = "center"><%= "Delete Bug" %></th>
+	</tr>
+	<% @project.bugs.each do |bug| %>
+	<tr>
+	<td align = "center"><%=  bug.title%></td>
+	<td align = "center"><%= link_to "Details", project_bug_path(@project , bug) %></td>
+	<td align = "center"><%= link_to "Delete Bug", project_bug_path(@project , bug), method: :delete, data:{confirm:"Are You Sure?"} %></td>
+	  <% end %>
+ 	</tr>
+ 	<% if current_user.try(:qa?)%>
+ 	<tr><td align = "center" colspan="3"> <%= link_to "Add Bug ",   new_project_bug_path(@project) %></td></tr>
+ 	<%end%>
+
+</table>

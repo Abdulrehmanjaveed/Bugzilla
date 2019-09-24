@@ -1,0 +1,25 @@
+<h1><b><%= current_user.name.capitalize  %></b><%=" following are your projects"%></h1>
+ <table style="width:100%" border="1">
+ 	<tr>
+    <th align = "center"><h2>Project</h2> </th>
+    <th align = "center"><h2>Details</h2></th> 
+  	</tr>
+<% @projects.each do |m| %>
+ <tr>
+	<td align = "center"><h4> <%= m.project.name %> </h4></td>
+	
+	<td align = "center"><%= link_to "Details", project_path(m.project) %></td>
+<% end %>
+  
+  </tr>
+
+
+</table>
+ <% if current_user.try(:manager?)%>
+<%= link_to "Create Project", new_project_path %>
+ <%end%>
+
+
+
+
+

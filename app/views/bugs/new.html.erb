@@ -1,0 +1,24 @@
+ <h2 ><%= current_user.user_type.capitalize  %></h2>
+<h1>Hello To bug create Page <h1>
+<h3>Add your bug here <h3>
+<%= form_for @bug, :html => {:multipart => true }, url: project_bugs_path(@project) do |f| %>
+	<%= f.label :Title %><br>
+	<%= f.text_field :title %><br>
+
+	<%= f.label :Deadline %><br>
+	<%= f.text_field :deadlane %><br>
+	<p >
+	<%= f.label :Type %><br />
+    <%= f.radio_button :bugtype, 'bug' %> Bug<br />
+    <%= f.radio_button :bugtype, 'feature' %> Feature<br />
+   </p>
+   	<p>
+   	<%= f.label :status %><br />
+	<%= f.select :status, ["new","started","resolved"]%>
+	</p>
+	<p>
+		<%= f.label :AddImage %><br />
+		<%= f.file_field :image %>
+	</p>
+	<%= f.submit %>
+<% end %>

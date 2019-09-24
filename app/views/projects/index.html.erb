@@ -1,0 +1,7 @@
+ <h2 ><%= current_user.user_type.capitalize  %></h2>
+<% if current_user.try(:developer?) %>
+
+	<%= render 'dev' %>
+<% else %>
+	<%= render 'manager' %>
+<% end %>

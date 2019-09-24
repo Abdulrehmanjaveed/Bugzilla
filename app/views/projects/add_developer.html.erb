@@ -1,0 +1,10 @@
+  <% if flash.now[:notice] %>
+    <div class="notice"><%= flash[:notice] %></div>
+  <% end %>
+
+<h3>Add user in project here <h3>
+<%= form_for @user, url: project_project_user_index_path do |f| %>
+	<%= f.label :Email %><br>
+	<%= f.email_field :email %><br>
+	<%= f.submit "Add Developer"%>
+<% end %>
