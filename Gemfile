@@ -44,7 +44,7 @@ gem 'bootsnap', '>= 1.1.0', require: false
 
 gem 'rubocop', '~> 0.67.2', require: false
 gem 'rubocop-performance'
-gem 'devise', '~> 4.2'
+gem 'devise', '~> 4.7'
 gem 'pundit'
 gem 'rails-controller-testing'
 group :development, :test do
